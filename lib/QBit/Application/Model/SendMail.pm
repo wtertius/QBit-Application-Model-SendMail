@@ -308,6 +308,8 @@ sub send {
 
     my $mail = $self->_mail_create(\%hash);
 
+    $self->_before_send($mail);
+
     if ($self->get_option('via', 'sendmail') eq 'sendmail') {
         $mail->send_by_sendmail(%{$self->get_option('sendmail')})
           || throw Exception::SendMail gettext("Can't send message");
@@ -316,6 +318,11 @@ sub send {
     } elsif ($self->get_option('via') eq 'testfile') {
         $mail->send_by_testfile($self->get_option('testfile'));
     }
+
+    $self->_after_send($mail);
 }
+
+sub _before_send { }
+sub _after_send  { }
 
 TRUE;
