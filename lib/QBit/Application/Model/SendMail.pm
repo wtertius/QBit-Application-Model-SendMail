@@ -248,12 +248,20 @@ sub _mail_create {
     # create message data
     $data = $self->_message_struct_out($self->_message_struct_in($hash, 'hash'), 'mime');
     my $msg;
-    $msg->{headers}->{From}    = $data->{from};
-    $msg->{headers}->{To}      = $data->{to};
-    $msg->{headers}->{Subject} = $data->{subject};
-    $msg->{headers}->{Cc}      = $data->{cc} || '';
-    $msg->{headers}->{Bcc}     = $data->{bcc} || '';
-    $msg->{headers}->{'X-Source-Spot'} = $data->{source_spot} || '';
+    $msg->{headers} = {
+        hash_transform(
+            $data,
+            [],
+            {
+                from        => 'From',
+                to          => 'To',
+                subject     => 'Subject',
+                cc          => 'Cc',
+                bcc         => 'Bcc',
+                source_spot => 'X-Source-Spot',
+            }
+        )
+    };
     $msg->{headers}->{'Message-ID'} = '<'
       . (time() . '_' . sprintf("%09d", rand(999999999))) . '.'
       . $self->get_option('message_id', 'framework@qbit.ru') . '>';
