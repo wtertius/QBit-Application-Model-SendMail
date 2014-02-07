@@ -77,7 +77,7 @@ our %FIELD_TYPE;
                     foreach my $elem (@$out) {
                         $elem->{name} =~ s/(^\s*|\s*$)//g;
                         throw Exception::SendMail::BadAddress gettext('Bad email [%s]', $elem->{email})
-                          if (!check_email($elem->{email}));
+                          if grep {!check_email($_)} split(/,\s*/, $elem->{email});
                     }
                     return $out;
                 },
