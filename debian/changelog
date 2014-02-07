@@ -1,3 +1,13 @@
+libqbit-application-model-sendmail-perl (0.004) raring; urgency=low
+
+  * Use \s instead of ' ' in regexp.
+
+  * Use standard regexp: //, not qr().
+
+  * Check emails one by one, but not both as one.
+
+ -- Sergei Svistunov <sergei-svistunov@yandex.ru>  Fri, 07 Feb 2014 11:31:10 +0400
+
 libqbit-application-model-sendmail-perl (0.003) raring; urgency=low
 
   * Use hash_transform instead of one to one assigning.
