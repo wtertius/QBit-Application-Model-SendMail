@@ -30,7 +30,7 @@ our %MESSAGE_STRUCT = (
     source_spot => {type => 'str', conv_raw => 1},
 );
 
-our %TEMPATERS = (
+our %TEMPLATERS = (
     TT2 => sub {
         my $d = shift;
         use Template;
@@ -172,8 +172,8 @@ our %FIELD_TYPE;
                         $out = $data;
                     } elsif (ref($data) eq 'SCALAR') {
                         $out = $$data;
-                    } elsif (ref($data) eq 'HASH' && $TEMPATERS{$data->{'type'}}) {
-                        $out = $TEMPATERS{$data->{'type'}}->($data);
+                    } elsif (ref($data) eq 'HASH' && $TEMPLATERS{$data->{'type'}}) {
+                        $out = $TEMPLATERS{$data->{'type'}}->($data);
                     }
                     return $out;
                 },
