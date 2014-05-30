@@ -1,3 +1,9 @@
+libqbit-application-model-sendmail-perl (0.005) raring; urgency=low
+
+  * Fix templaters misprint.
+
+ -- Sergei Svistunov <sergei-svistunov@yandex.ru>  Fri, 30 May 2014 16:48:18 +0400
+
 libqbit-application-model-sendmail-perl (0.004) raring; urgency=low
 
   * Use \s instead of ' ' in regexp.
