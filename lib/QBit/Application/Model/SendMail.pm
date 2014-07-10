@@ -11,10 +11,11 @@ use MIME::Base64 qw(encode_base64);
 use MIME::Lite;
 
 our %MESSAGE_STRUCT = (
-    from => {type => 'email', max      => 1, required => 1},
-    to   => {type => 'email', required => 1},
-    cc   => {type => 'email'},
-    bcc  => {type => 'email'},
+    from     => {type => 'email', max      => 1, required => 1},
+    to       => {type => 'email', required => 1},
+    cc       => {type => 'email'},
+    bcc      => {type => 'email'},
+    reply_to => {type => 'email'},
     subject      => {type => 'str',         required => 1},
     content_type => {type => 'contenttype', default  => 'text/plain'},
     body         => {type => 'str',         conv_raw => 1, required => 1},
@@ -259,6 +260,7 @@ sub _mail_create {
                 cc          => 'Cc',
                 bcc         => 'Bcc',
                 source_spot => 'X-Source-Spot',
+                reply_to    => 'Reply-To',
             }
         )
     };
