@@ -1,3 +1,9 @@
+libqbit-application-model-sendmail-perl (0.006) raring; urgency=low
+
+  * Add reply_to header if given.
+
+ -- Ivan Bessarabov <ivan@bessarabov.ru>  Fri, 11 Jul 2014 16:22:11 +0400
+
 libqbit-application-model-sendmail-perl (0.005) raring; urgency=low
 
   * Fix templaters misprint.
