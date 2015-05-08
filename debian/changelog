@@ -1,3 +1,9 @@
+libtertiusqbit-application-model-sendmail-perl (0.008) raring; urgency=low
+
+  * Don't use while each.
+
+ -- Dmitry Lukiyanchuk <tertius@yandex-team.ru>  Fri, 08 May 2015 11:32:58 +0300
+
 libtertiusqbit-application-model-sendmail-perl (0.007) raring; urgency=low
 
   * Rename debian package
