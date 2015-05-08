@@ -56,8 +56,8 @@ our %FIELD_TYPE;
                     my $out = [];
 
                     if (ref($data) eq 'HASH') {
-                        while (my ($email, $name) = each(%$data)) {
-                            push(@$out, {name => $name, email => $email});
+                        foreach my $email (keys(%$data)) {
+                            push(@$out, {name => $data->{$email}, email => $email});
                         }
                     } elsif (!ref($data) && $data) {
                         push(@$out, {name => '', email => $data});
@@ -202,7 +202,9 @@ sub _message_struct_out {
     my ($self, $data, $media, $struct) = @_;
     my $out;
     $struct //= \%MESSAGE_STRUCT;
-    while (my ($name, $opt) = each(%$struct)) {
+    foreach my $name (keys(%$struct)) {
+        my $opt = $struct->{$name};
+
         # call export
         my $sub = $FIELD_TYPE{$opt->{type}}->{out}->{$media}->[0]
           if ($FIELD_TYPE{$opt->{type}}->{out}->{$media}
@@ -220,7 +222,9 @@ sub _message_struct_in {
     $struct ||= \%MESSAGE_STRUCT;
     $media  ||= 'hash';
     my $out;
-    while (my ($name, $opt) = each(%$struct)) {
+    foreach my $name (keys(%$struct)) {
+        my $opt = $struct->{$name};
+
         # call import
         my $res;
         foreach my $sub (@{$FIELD_TYPE{$opt->{type}}->{in}->{$media}}, @{$FIELD_TYPE{$opt->{type}}->{in}->{''}}) {
